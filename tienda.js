@@ -6,7 +6,7 @@ const productosMenu = [
       id: 1,
       nombre: 'Hamburgesa',
       precio: 50,
-      imagen: '/imagenes/Hamburgesa.png',
+      imagen: 'https://i.ibb.co/198J2ZL/Hamburgesa.png',
       tamaño: 'col-lg-3',
       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
       icon:'&#127828'
@@ -15,7 +15,7 @@ const productosMenu = [
       id: 2,
       nombre: 'Lomito',
       precio: 60,
-      imagen: '/imagenes/Lomo.png',
+      imagen: 'https://i.ibb.co/tBGdt72/Lomo.png',
       tamaño: 'col-lg-3',
       infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
       icon:'&#127830'
@@ -24,7 +24,7 @@ const productosMenu = [
       id: 3,
       nombre: 'Pizza',
       precio: 30,
-      imagen: '/imagenes/Pizza.png',
+      imagen: 'https://i.ibb.co/vYK6Xcc/Pizza.png',
       tamaño: 'col-lg-3',
       infoProducto: 'Queso, carne, tomate, lechuga y mayonesa.',
       icon:'&#127829'
@@ -33,7 +33,7 @@ const productosMenu = [
       id: 4,
       nombre: 'Papas',
       precio: 20,
-      imagen: '/imagenes/Papas.png',
+      imagen: 'https://i.ibb.co/V29NPgy/Papas.png',
       tamaño: 'col-lg-3',
       infoProducto: 'papas, queso cheddar y bacon.',
       icon:'&#127839'
@@ -42,7 +42,7 @@ const productosMenu = [
       id: 5,
       nombre: 'Promo Hamburgesas',
       precio: 80,
-      imagen: '/imagenes/PromoHamburgesa.png',
+      imagen: 'https://i.ibb.co/J7c7qQR/Promo-Hamburgesa.png',
       tamaño: 'col-lg-6',
       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
       icon:'&#127828&#127828'
@@ -51,7 +51,7 @@ const productosMenu = [
     id: 6,
     nombre: 'Promo Lomitos',
     precio: 100,
-    imagen: '/imagenes/PromoLomito.png',
+    imagen: 'https://i.ibb.co/ynDLkMh/Promo-Lomito.png',
     tamaño: 'col-lg-6',
     infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
     icon:'&#127830&#127830'
