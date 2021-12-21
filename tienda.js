@@ -1,233 +1,255 @@
 
 // Productos del menu
 
-const productosMenu = [
-  {
-      id: 1,
-      nombre: 'Hamburgesa',
-      precio: 50,
-      imagen: 'https://i.ibb.co/198J2ZL/Hamburgesa.png',
-      tamaño: 'col-lg-3',
-      infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
-      icon:'&#127828'
-  },
-  {
-      id: 2,
-      nombre: 'Lomito',
-      precio: 60,
-      imagen: 'https://i.ibb.co/tBGdt72/Lomo.png',
-      tamaño: 'col-lg-3',
-      infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
-      icon:'&#127830'
-  },
-  {
-      id: 3,
-      nombre: 'Pizza',
-      precio: 30,
-      imagen: 'https://i.ibb.co/vYK6Xcc/Pizza.png',
-      tamaño: 'col-lg-3',
-      infoProducto: 'Queso, carne, tomate, lechuga y mayonesa.',
-      icon:'&#127829'
-  },
-  {
-      id: 4,
-      nombre: 'Papas',
-      precio: 20,
-      imagen: 'https://i.ibb.co/V29NPgy/Papas.png',
-      tamaño: 'col-lg-3',
-      infoProducto: 'papas, queso cheddar y bacon.',
-      icon:'&#127839'
-  },
-  {
-      id: 5,
-      nombre: 'Promo Hamburgesas',
-      precio: 80,
-      imagen: 'https://i.ibb.co/J7c7qQR/Promo-Hamburgesa.png',
-      tamaño: 'col-lg-6',
-      infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
-      icon:'&#127828&#127828'
-  },
-  {
-    id: 6,
-    nombre: 'Promo Lomitos',
-    precio: 100,
-    imagen: 'https://i.ibb.co/ynDLkMh/Promo-Lomito.png',
-    tamaño: 'col-lg-6',
-    infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
-    icon:'&#127830&#127830'
-  },
+// const productosMenu = [
+//   {
+//       id: 1,
+//       nombre: 'Hamburgesa',
+//       precio: 50,
+//       imagen: 'https://i.ibb.co/198J2ZL/Hamburgesa.png',
+//       tamaño: 'col-lg-3',
+//       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
+//       icon:'&#127828'
+//   },
+//   {
+//       id: 2,
+//       nombre: 'Lomito',
+//       precio: 60,
+//       imagen: 'https://i.ibb.co/tBGdt72/Lomo.png',
+//       tamaño: 'col-lg-3',
+//       infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
+//       icon:'&#127830'
+//   },
+//   {
+//       id: 3,
+//       nombre: 'Pizza',
+//       precio: 30,
+//       imagen: 'https://i.ibb.co/vYK6Xcc/Pizza.png',
+//       tamaño: 'col-lg-3',
+//       infoProducto: 'Queso, carne, tomate, lechuga y mayonesa.',
+//       icon:'&#127829'
+//   },
+//   {
+//       id: 4,
+//       nombre: 'Papas',
+//       precio: 20,
+//       imagen: 'https://i.ibb.co/V29NPgy/Papas.png',
+//       tamaño: 'col-lg-3',
+//       infoProducto: 'papas, queso cheddar y bacon.',
+//       icon:'&#127839'
+//   },
+//   {
+//       id: 5,
+//       nombre: 'Promo Hamburgesas',
+//       precio: 80,
+//       imagen: 'https://i.ibb.co/J7c7qQR/Promo-Hamburgesa.png',
+//       tamaño: 'col-lg-6',
+//       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
+//       icon:'&#127828&#127828'
+//   },
+//   {
+//     id: 6,
+//     nombre: 'Promo Lomitos',
+//     precio: 100,
+//     imagen: 'https://i.ibb.co/ynDLkMh/Promo-Lomito.png',
+//     tamaño: 'col-lg-6',
+//     infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
+//     icon:'&#127830&#127830'
+//   },
 
-];
+// ];
+
+
+
 
 // Items y Carrito para menu y carro de compras
 const items = document.getElementById ("items");
-const shopCarrito =document.getElementById ("shopCarrito")
+const shopCarrito =document.getElementById ("shopCarrito");
+const URL = "./productos.json"
 
-// Funcio para actualizar los productos que aprecen en el menu
-function renderizarProductos() {
-  productosMenu.forEach((info) => {
+
+
+ // cargar el dom tomando los datos del archivo json 
+
+  $.ajax({
+    type: "GET",
+    url: URL,
+    dataType: "JSON",
+    }).done ((productos) => {
   
-     
-      // Columnas del menu
-      const colDOM = document.createElement('div');
-      colDOM.classList.add('col-12', info.tamaño ,);
-      // items del menu
-      const itemDOM = document.createElement('div');
-      itemDOM.classList.add('item', 'shadow', 'mb-4',"bg-gradient");
-      // Imagenes de los productos
-      const imgDOM = document.createElement('img');
-      imgDOM.classList.add('item-image',"shake-slow");
-      imgDOM.setAttribute('src', info.imagen);
-      // Titulo de los productos
-      const titleDOM = document.createElement('h3');
-      titleDOM.classList.add('item-title',);
-      titleDOM.textContent = info.nombre;
-      // Boton info producto
-      const btnInfo = document.createElement('button')
-      btnInfo.classList.add ('btn', 'bg-danger',`classProd${info.id}`,'infoBtn' );
-      btnInfo.innerHTML = `Info ${info.icon} `;
       
-      // Informacion producto
-      const infoProducto = document.createElement("div")
-      infoProducto.innerHTML= `
-      <div style='display:none' id= 'idProd${info.id}' class= 'infoProducto'> ${info.infoProducto} </div> `;
-
-      // Detalle de los productos
-      const detailDOM = document.createElement('div');
-      detailDOM.classList.add('item-details');
-      // Anuncio de producto agregado
-      const anuncioProdAdd = document.createElement("p");
-      anuncioProdAdd.innerHTML= `<p style='display:none' class='anuncioAdd' id='positionAdd${info.id}'> Agregaste este producto   <a class='checkAdd'> &#9989 </a> </p>`
-      // Precio de los productos
-      const precioDOM = document.createElement('h4');
-      precioDOM.classList.add('item-price', `priceAdd${info.id}` );
-      precioDOM.textContent = '$ '+ info.precio ;
-      // Boton de agregar productos
-      const botonDOM = document.createElement('button');
-      botonDOM.classList.add('item-button', 'btn', 'addToCart',`addProd${info.id}`);
-      botonDOM.textContent = 'Agregar';
-      botonDOM.setAttribute('marcador', info.id);
-      
-      // Insertamos en items (cards)
-      itemDOM.appendChild(btnInfo);
-      itemDOM.appendChild(titleDOM);
-      itemDOM.appendChild(imgDOM);
-      itemDOM.appendChild(infoProducto);
-      itemDOM.appendChild(detailDOM);
-      itemDOM.appendChild(anuncioProdAdd);
-
-      
-
-      // Insertamos en detalle de los productos
-
-      detailDOM.appendChild(botonDOM);
-      
-      detailDOM.appendChild(precioDOM);
-
-      // Insertamos los items en cada columna
-     
-      colDOM.appendChild(itemDOM);
-      
-      // Insertamos las columnas denntro del elemento items anteriormente declarado
-      
-      items.appendChild(colDOM);
-
-    // cargamos jquery  
-    $(document).ready(function(){
-      
-      // funcion para que mediante click nos muestre la info del producto
-      $(`.classProd${info.id}`).click(()=>{
-        
-        //Animacion del contenido y boton toggle de info
-        $(`#idProd${info.id}`).slideToggle(200)})
+        console.log(productos)
   
-      })
-      // funcion para que mediante click nos muestre el anuncio de producto agregado
-      $(`.addProd${info.id}`).click(()=>{
-
-        //Animacion del contenido y boton agregar junto con callback en carrito del anuncio
-        $(`#positionAdd${info.id}`).fadeIn(200, ()=>{$("#addProdCarr").fadeIn(100)});
+        console.log("funciona22")
+  
+  
+        productos.forEach((info) => {
+    
        
-        $(`#positionAdd${info.id}`).fadeOut(500, ()=>{$("#addProdCarr").fadeOut(700)});
+        // Columnas del menu
+        const colDOM = document.createElement('div');
+        colDOM.classList.add('col-12', info.tamaño ,);
+        // items del menu
+        const itemDOM = document.createElement('div');
+        itemDOM.classList.add('item', 'shadow', 'mb-4',"bg-gradient");
+        // Imagenes de los productos
+        const imgDOM = document.createElement('img');
+        imgDOM.classList.add('item-image',"shake-slow");
+        imgDOM.setAttribute('src', info.imagen);
+        // Titulo de los productos
+        const titleDOM = document.createElement('h3');
+        titleDOM.classList.add('item-title',);
+        titleDOM.textContent = info.nombre;
+        // Boton info producto
+        const btnInfo = document.createElement('button')
+        btnInfo.classList.add ('btn', 'bg-danger',`classProd${info.id}`,'infoBtn' );
+        btnInfo.innerHTML = `Info ${info.icon} `;
         
-      })
+        // Informacion producto
+        const infoProducto = document.createElement("div")
+        infoProducto.innerHTML= `
+        <div style='display:none' id= 'idProd${info.id}' class= 'infoProducto'> ${info.infoProducto} </div> `;
+  
+        // Detalle de los productos
+        const detailDOM = document.createElement('div');
+        detailDOM.classList.add('item-details');
+        // Anuncio de producto agregado
+        const anuncioProdAdd = document.createElement("p");
+        anuncioProdAdd.innerHTML= `<p style='display:none' class='anuncioAdd' id='positionAdd${info.id}'> Agregaste este producto   <a class='checkAdd'> &#9989 </a> </p>`
+        // Precio de los productos
+        const precioDOM = document.createElement('h4');
+        precioDOM.classList.add('item-price', `priceAdd${info.id}` );
+        precioDOM.textContent = '$ '+ info.precio ;
+        // Boton de agregar productos
+        const botonDOM = document.createElement('button');
+        botonDOM.classList.add('item-button', 'btn', 'addToCart',`addProd${info.id}`);
+        botonDOM.textContent = 'Agregar';
+        botonDOM.setAttribute('marcador', info.id);
+        
+        // Insertamos en items (cards)
+        itemDOM.appendChild(btnInfo);
+        itemDOM.appendChild(titleDOM);
+        itemDOM.appendChild(imgDOM);
+        itemDOM.appendChild(infoProducto);
+        itemDOM.appendChild(detailDOM);
+        itemDOM.appendChild(anuncioProdAdd);
+  
+        
+  
+        // Insertamos en detalle de los productos
+  
+        detailDOM.appendChild(botonDOM);
+        
+        detailDOM.appendChild(precioDOM);
+  
+        // Insertamos los items en cada columna
+       
+        colDOM.appendChild(itemDOM);
+        
+        // Insertamos las columnas denntro del elemento items anteriormente declarado
+        
+        items.appendChild(colDOM);
+  
+      // cargamos jquery  
+      $(document).ready(function(){
+        
+        // funcion para que mediante click nos muestre la info del producto
+        $(`.classProd${info.id}`).click(()=>{
+          
+          //Animacion del contenido y boton toggle de info
+          $(`#idProd${info.id}`).slideToggle(200)})
+    
+        })
+        // funcion para que mediante click nos muestre el anuncio de producto agregado
+        $(`.addProd${info.id}`).click(()=>{
+  
+          //Animacion del contenido y boton agregar junto con callback en carrito del anuncio
+          $(`#positionAdd${info.id}`).fadeIn(200, ()=>{$("#addProdCarr").fadeIn(100)});
+         
+          $(`#positionAdd${info.id}`).fadeOut(500, ()=>{$("#addProdCarr").fadeOut(700)});
+          
+        })
+  
+      });
+  
+  
+   // Carrito 
+   const carritoDOM = document.createElement('section');
+   carritoDOM.classList.add('container', 'bg-dark', 'bg-gradient', 'text-warning' ,'rounded-3','carritoBck' );
+   // Barra de detalles precio0 casntidad y producto
+   const productoDOM = document.createElement('h1');
+   productoDOM.classList.add("text-center");
+   productoDOM.innerHTML= `<h1 class="text-center colorTextOrange">CARRITO</h1>
+   <hr>
+   <div class="row">
+       <div class="col-4">
+           <div class="shopping-cart-header colorTextOrange">
+               <h3>Producto</h6>
+           </div>
+       </div>
+       <div class="col-4">
+           <div class="shopping-cart-header colorTextOrange">
+               <h3 class="text-truncate">Precio</h6>
+           </div>
+       </div>
+       <div class="col-4">
+           <div class="shopping-cart-header colorTextOrange">
+               <h3>Cantidad</h6>
+           </div>
+       </div>
+   </div>`;
+  
+  // Items del carrito
+  const itemsCard = document.createElement('div');
+  productoDOM.classList.add("shopping-cart-items", "itemsContainer");
+  // Total mde carrito
+  const totalCard = document.createElement('div');
+  totalCard.classList.add("row");
+  // Columna del total carrito
+  const totalColCard = document.createElement('div');
+  totalColCard.classList.add("col-12");
+  // Contenido de total carrito
+  const totalContenidoCard = document.createElement('div');
+  totalContenidoCard.classList.add("shopping-cart-total", "d-flex", "align-items-center");
+  
+  totalContenidoCard.innerHTML = `<h3 class="mb-0">Total</h3>
+  <h3 class="ml-4 mb-0 totalCarrito">$0</h3><p style='display: none' class='anuncioAdd ml-5' id='addProdCarr'> Agregaste un producto  
+  <a class='checkAdd'> &#9989 </a> </p>
+  <p style='display: none' class='anuncioAdd2 ml-5' id='removeProdCarr'> Quitaste un producto   <a class='checkAdd'> &#10060 </a></p>
+  <p style='display: none' class='anuncioAdd3 ml-5' id='changeProdCarr'> Cambiaste la cantidad el producto <a class='checkAdd'> &#128260 </a></p>
+  <p style='display: none' class='anuncioAdd4 ml-5' id='removeAllProds'>vaciaste el carro de compras<a class='checkAdd'> &#9940 </a></p>
+  <button class=" ml-auto comprarButton btnComprar"  data-toggle="modal"
+  data-target="#comprarModal">Comprar</button>
+  <button class="  btnVaciar  vaciarCarro"> vaciar </button>
+  
+  `
+  // Insertamos el contenido dentro de las columnas y las columnas dentro del row
+  
+  totalColCard.appendChild(totalContenidoCard);
+  totalCard.appendChild(totalColCard);
+  carritoDOM.appendChild(productoDOM)
+  carritoDOM.appendChild(totalCard);
+  
+  // Insertamos todo dentro del elemento declarado anteriormente
+  shopCarrito.appendChild(carritoDOM);
+  console.log("funciona13")
+  
+  
+    })
 
-    });
 
- // Carrito 
- const carritoDOM = document.createElement('section');
- carritoDOM.classList.add('container', 'bg-dark', 'bg-gradient', 'text-warning' ,'rounded-3','carritoBck' );
- // Barra de detalles precio0 casntidad y producto
- const productoDOM = document.createElement('h1');
- productoDOM.classList.add("text-center");
- productoDOM.innerHTML= `<h1 class="text-center colorTextOrange">CARRITO</h1>
- <hr>
- <div class="row">
-     <div class="col-4">
-         <div class="shopping-cart-header colorTextOrange">
-             <h3>Producto</h6>
-         </div>
-     </div>
-     <div class="col-4">
-         <div class="shopping-cart-header colorTextOrange">
-             <h3 class="text-truncate">Precio</h6>
-         </div>
-     </div>
-     <div class="col-4">
-         <div class="shopping-cart-header colorTextOrange">
-             <h3>Cantidad</h6>
-         </div>
-     </div>
- </div>`;
+    // cargar funciones despues del dom
+  
+setTimeout(function cargarFunciones (){
+ 
 
-// Items del carrito
-const itemsCard = document.createElement('div');
-productoDOM.classList.add("shopping-cart-items", "itemsContainer");
-// Total mde carrito
-const totalCard = document.createElement('div');
-totalCard.classList.add("row");
-// Columna del total carrito
-const totalColCard = document.createElement('div');
-totalColCard.classList.add("col-12");
-// Contenido de total carrito
-const totalContenidoCard = document.createElement('div');
-totalContenidoCard.classList.add("shopping-cart-total", "d-flex", "align-items-center");
+//$('.addToCart').click(addCarritoClick );
 
-totalContenidoCard.innerHTML = `<h3 class="mb-0">Total</h3>
-<h3 class="ml-4 mb-0 totalCarrito">$0</h3><p style='display: none' class='anuncioAdd ml-5' id='addProdCarr'> Agregaste un producto  
-<a class='checkAdd'> &#9989 </a> </p>
-<p style='display: none' class='anuncioAdd2 ml-5' id='removeProdCarr'> Quitaste un producto   <a class='checkAdd'> &#10060 </a></p>
-<p style='display: none' class='anuncioAdd3 ml-5' id='changeProdCarr'> Cambiaste la cantidad el producto <a class='checkAdd'> &#128260 </a></p>
-<button class=" ml-auto comprarButton item-button"  data-toggle="modal"
-data-target="#comprarModal">Comprar</button>
-`
-// Insertamos el contenido dentro de las columnas y las columnas dentro del row
+$('.addToCart').click(addCarritoClick)
 
-totalColCard.appendChild(totalContenidoCard);
-totalCard.appendChild(totalColCard);
-carritoDOM.appendChild(productoDOM)
-carritoDOM.appendChild(totalCard);
-
-// Insertamos todo dentro del elemento declarado anteriormente
-shopCarrito.appendChild(carritoDOM);
-
-
-}
-
-// Actualizamos los productos para que aparescan una vez cargue la pagina
-renderizarProductos();
-
-
-// Añadimos al carrito mediate los botones con su clase
-
-const addCarrito = document.querySelectorAll('.addToCart');
-addCarrito.forEach((addButton) => {
-  addButton.addEventListener('click', addCarritoClick);
-});
-
+  
 // Evento de comprar 
-const mostrar = document.querySelector(".comprarButton");
-mostrar.addEventListener("click", comprarBotonClick)
+$(".comprarButton").click(comprarBotonClick)
 
 // Seleccionamos el contendedor de los items
 const itemsContainer = document.querySelector('.itemsContainer');
@@ -236,6 +258,8 @@ const itemsContainer = document.querySelector('.itemsContainer');
 // Funcion para añadir mediante click al carrito y pasar parametros
 
 function addCarritoClick(event) {
+
+  
   const button = event.target;
   const item = button.closest('.item');
 
@@ -302,9 +326,9 @@ function addCarritoItem(itemTitulo, itemPrecio, itemImagen) {
 
   // productoDOM
   // .querySelector('.removeAddButt')
-  // .addEventListener('click', vaciarCarrito );
+  // .addEventListener('click', eliminarProducto  );
  
-    $(".removeAddButt").click(vaciarCarrito)
+    $(".removeAddButt").click(eliminarProducto)
     
     $(".removeAddButt").click(()=>{$("#removeProdCarr").fadeIn(200); $("#removeProdCarr").fadeOut(700);})
    
@@ -346,9 +370,10 @@ function cargarCarrito() {
 }
 
 // Funcion para vaciar el item del carrito
-function vaciarCarrito(event) {
+function eliminarProducto (event) {
   const botonClick = event.target;
   botonClick.closest('.itemCarrShop').remove();
+  
   cargarCarrito();
 }
 //Funcion para cambiar de cantidad de productos y evita que sea 0 o negativo
@@ -359,12 +384,25 @@ function cambioDeCantidad (event) {
   cargarCarrito(input.value);
 }
 
+// funcion para vaciar todo el carrito
+$(".vaciarCarro").click(vaciarCarrito);
+ 
 
+function vaciarCarrito (){
+  $(".itemCarrShop").empty();
+  $("#removeAllProds").fadeIn(200); $("#removeAllProds").fadeOut(700);
+  cargarCarrito();
+}
+
+
+
+
+   
 
 
 // Funcion para comprar y reiniciar el carro
 function comprarBotonClick() {
-  itemsContainer.innerHTML = '';
+  $(".itemCarrShop").empty();
   cargarCarrito();
 }
 
@@ -428,4 +466,8 @@ finComprar.addEventListener("click", refrescar )
 
   location.reload() 
 
+  
+
 }
+
+}, 1000)
