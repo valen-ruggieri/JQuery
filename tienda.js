@@ -1,66 +1,4 @@
 
-// Productos del menu
-
-// const productosMenu = [
-//   {
-//       id: 1,
-//       nombre: 'Hamburgesa',
-//       precio: 50,
-//       imagen: 'https://i.ibb.co/198J2ZL/Hamburgesa.png',
-//       tamaño: 'col-lg-3',
-//       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
-//       icon:'&#127828'
-//   },
-//   {
-//       id: 2,
-//       nombre: 'Lomito',
-//       precio: 60,
-//       imagen: 'https://i.ibb.co/tBGdt72/Lomo.png',
-//       tamaño: 'col-lg-3',
-//       infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
-//       icon:'&#127830'
-//   },
-//   {
-//       id: 3,
-//       nombre: 'Pizza',
-//       precio: 30,
-//       imagen: 'https://i.ibb.co/vYK6Xcc/Pizza.png',
-//       tamaño: 'col-lg-3',
-//       infoProducto: 'Queso, carne, tomate, lechuga y mayonesa.',
-//       icon:'&#127829'
-//   },
-//   {
-//       id: 4,
-//       nombre: 'Papas',
-//       precio: 20,
-//       imagen: 'https://i.ibb.co/V29NPgy/Papas.png',
-//       tamaño: 'col-lg-3',
-//       infoProducto: 'papas, queso cheddar y bacon.',
-//       icon:'&#127839'
-//   },
-//   {
-//       id: 5,
-//       nombre: 'Promo Hamburgesas',
-//       precio: 80,
-//       imagen: 'https://i.ibb.co/J7c7qQR/Promo-Hamburgesa.png',
-//       tamaño: 'col-lg-6',
-//       infoProducto: 'Queso, carne, tomate, lechuga, mayonesa.',
-//       icon:'&#127828&#127828'
-//   },
-//   {
-//     id: 6,
-//     nombre: 'Promo Lomitos',
-//     precio: 100,
-//     imagen: 'https://i.ibb.co/ynDLkMh/Promo-Lomito.png',
-//     tamaño: 'col-lg-6',
-//     infoProducto: 'Lomo, queso, huevo, tomate, lechuga, mayonesa y jamón.',
-//     icon:'&#127830&#127830'
-//   },
-
-// ];
-
-
-
 
 // Items y Carrito para menu y carro de compras
 const items = document.getElementById ("items");
@@ -78,9 +16,7 @@ const URL = "./productos.json"
     }).done ((productos) => {
   
       
-        console.log(productos)
-  
-        console.log("funciona22")
+        
   
   
         productos.forEach((info) => {
@@ -210,7 +146,7 @@ const URL = "./productos.json"
   totalColCard.classList.add("col-12");
   // Contenido de total carrito
   const totalContenidoCard = document.createElement('div');
-  totalContenidoCard.classList.add("shopping-cart-total", "d-flex", "align-items-center");
+  totalContenidoCard.classList.add("shopping-cart-total", "d-flex", "align-items-center", "cardItems");
   
   totalContenidoCard.innerHTML = `<h3 class="mb-0">Total</h3>
   <h3 class="ml-4 mb-0 totalCarrito">$0</h3><p style='display: none' class='anuncioAdd ml-5' id='addProdCarr'> Agregaste un producto  
@@ -224,7 +160,6 @@ const URL = "./productos.json"
   
   `
   // Insertamos el contenido dentro de las columnas y las columnas dentro del row
-  
   totalColCard.appendChild(totalContenidoCard);
   totalCard.appendChild(totalColCard);
   carritoDOM.appendChild(productoDOM)
@@ -232,19 +167,18 @@ const URL = "./productos.json"
   
   // Insertamos todo dentro del elemento declarado anteriormente
   shopCarrito.appendChild(carritoDOM);
-  console.log("funciona13")
+  
   
   
     })
 
 
-    // cargar funciones despues del dom
+// cargar funciones despues del dom
   
 setTimeout(function cargarFunciones (){
  
 
 //$('.addToCart').click(addCarritoClick );
-
 $('.addToCart').click(addCarritoClick)
 
   
@@ -256,7 +190,6 @@ const itemsContainer = document.querySelector('.itemsContainer');
 
 
 // Funcion para añadir mediante click al carrito y pasar parametros
-
 function addCarritoClick(event) {
 
   
@@ -268,6 +201,8 @@ function addCarritoClick(event) {
   const itemPrecio = item.querySelector('.item-price').textContent;
   
   const itemImagen = item.querySelector('.item-image').src;
+
+ 
 
   addCarritoItem(itemTitulo, itemPrecio, itemImagen);
 }
@@ -286,6 +221,8 @@ function addCarritoItem(itemTitulo, itemPrecio, itemImagen) {
       );
       elementosCantidad.value++;
       cargarCarrito();
+      
+      
       return;
     }
   }
@@ -299,7 +236,7 @@ function addCarritoItem(itemTitulo, itemPrecio, itemImagen) {
         <div class="col-4 ">
             <div class="shopping-cart-item itemsCard  ">
                 <img src=${itemImagen} class="shopping-cart-image">
-                <h6 class="shopping-cart-item-title itemTituloAdd text-truncate ml-3 mb-0">${itemTitulo}</h6>
+                <h6 class="shopping-cart-item-title itemTituloAdd itemTitle text-truncate ml-3 mb-0">${itemTitulo}</h6>
             </div>
         </div>
         <div class="col-4">
@@ -322,21 +259,14 @@ function addCarritoItem(itemTitulo, itemPrecio, itemImagen) {
   itemsContainer.append(productoDOM);
 
 
-  // ----- REEMPLAZAMOS EL CODIGO JSDOM POR JQUERY CUMPLIENDO SU MISMA FUNCION -----------------
-
-  // productoDOM
-  // .querySelector('.removeAddButt')
-  // .addEventListener('click', eliminarProducto  );
+// Creamos las animaciones e interacciones de la funcion eliminarProducto
  
     $(".removeAddButt").click(eliminarProducto)
     
     $(".removeAddButt").click(()=>{$("#removeProdCarr").fadeIn(200); $("#removeProdCarr").fadeOut(700);})
    
-  // ----- REEMPLAZAMOS EL CODIGO JSDOM POR JQUERY CUMPLIENDO SU MISMA FUNCION -----------------  
-
-  //  productoDOM
-  //   .querySelector('.itemCantidad')
-  //    .addEventListener('change', cambioDeCantidad );
+// Creamos las animaciones e interacciones de la funcion cambioDeCantidad  
+  
     $(".itemCantidad").change(cambioDeCantidad);
     $(".itemCantidad").change(()=>{$("#changeProdCarr").fadeIn(200);$("#changeProdCarr").fadeOut(700)})
    
@@ -364,24 +294,94 @@ function cargarCarrito() {
     const itemCantidad = Number(
       elementosCantidad.value
     );
+    
+    
     total = total + itemPrecio * itemCantidad;
+    cargarLocalStore ()
+
+    
   });
   totalCarrito.innerHTML = `$${total.toFixed(2)}`;
+  localStorage.setItem ("Total", JSON.stringify(total))
+
+    
+    
+  
+  
+
+}
+
+// Funcion para cargar el localstorage
+function cargarLocalStore (){
+
+  const carroLS = [];
+
+  const itemsACargar = document.querySelectorAll('.itemCarrShop');
+
+  itemsACargar.forEach((shopItem) => {
+
+    const carro = [];
+    
+    const precioLS = shopItem.querySelector(
+      '.itemPrecio'
+    );
+
+    let precioItemLS = Number(precioLS.textContent.replace('$', '')
+    );
+
+    const cantidadLS = shopItem.querySelector(
+      '.itemCantidad'
+    );
+
+   let cantidadItemLS = Number(cantidadLS.value
+    );
+
+    const title = shopItem.querySelector(
+      ".itemTitle"
+    );
+
+    let tituloProducto = title.textContent;
+
+    let subtotalItemsLS = precioItemLS * cantidadItemLS;
+
+    
+    localStorage.setItem (tituloProducto, "  Cantidad: "+ cantidadItemLS +"u   Precio por unidad:  $"+precioItemLS+"   Total "+tituloProducto+ "s:   $"+subtotalItemsLS)
+   
+     carro.push ("Producto: "+tituloProducto)
+     carro.push ("Precio por unidad:  $"+ precioItemLS)
+     carro.push ("Cantidad: "+cantidadItemLS+"u")
+     carro.push ("Subtotal "+ tituloProducto+"s : $"+subtotalItemsLS)
+
+      carroLS.push (carro );
+
+    $(".removeAddButt").click(eliminarProducto,()=>{
+
+    localStorage.removeItem (
+    tituloProducto, "  Cantidad: "+ cantidadItemLS +"  Precio por unidad: $"+precioItemLS+"  Total "+tituloProducto+ "s:  $"+precioItemLS*cantidadItemLS)})
+  
+
+})
+
+localStorage.setItem("carrito", JSON.stringify(carroLS))
+
 }
 
 // Funcion para vaciar el item del carrito
 function eliminarProducto (event) {
   const botonClick = event.target;
   botonClick.closest('.itemCarrShop').remove();
-  
+   cargarLocalStore ()
   cargarCarrito();
+ 
 }
+
 //Funcion para cambiar de cantidad de productos y evita que sea 0 o negativo
 function cambioDeCantidad (event) {
   const input = event.target;
   if (input.value <= 0) {input.value = 1};
   
   cargarCarrito(input.value);
+  cargarLocalStore ()
 }
 
 // funcion para vaciar todo el carrito
@@ -389,9 +389,11 @@ $(".vaciarCarro").click(vaciarCarrito);
  
 
 function vaciarCarrito (){
-  $(".itemCarrShop").empty();
+  $(".itemCarrShop").remove();
   $("#removeAllProds").fadeIn(200); $("#removeAllProds").fadeOut(700);
   cargarCarrito();
+  localStorage.clear()
+  
 }
 
 
@@ -402,17 +404,13 @@ function vaciarCarrito (){
 
 // Funcion para comprar y reiniciar el carro
 function comprarBotonClick() {
-  $(".itemCarrShop").empty();
+  
   cargarCarrito();
+ 
+  
 }
 
 
-// Evento para llamar a la funcion mostrarDatos
-
-// ----- REEMPLAZAMOS EL CODIGO JSDOM POR JQUERY CUMPLIENDO SU MISMA FUNCION -----------------
-
-// const enviarDatos = document.getElementById("datos")
-// enviarDatos.addEventListener('click', validarCampos );
 
 $("#datos").click(validarCampos)
 
@@ -438,24 +436,72 @@ function mostrarDatos (){
       
          
       let formulario = document.forms["formularioDatos"];
-      let textoForm = "";
       let nombreForm = formulario["nombre"];
       let telefonoForm = formulario["telefono"];
       let direccionForm = formulario["direccion"];
       let codigoPostalForm = formulario["codigoPostal"];
       let distanciaForm = formulario["distancia"];
- 
-        
 
-      textoForm =
-      '<h3 class="colorTextOrange ">Nombre : ' +"<h5 class='text-light'>"+nombreForm.value+ "</h5>"+"</h3><br>"+
-      '<h3 class="colorTextOrange">Telefono : ' + "<h5 class='text-light'>"+telefonoForm.value+ "</h5>"+"</h3><br>"+ 
-      '<h3 class="colorTextOrange">Direccion : ' + "<h5 class='text-light'>"+direccionForm.value +"</h5>"+"</h3><br>" + 
-      '<h3 class="colorTextOrange">Distancia : ' + "<h5 class='text-light'>"+distanciaForm.value +"</h5>"+"</h3><br>"+
-      '<h3 class="colorTextOrange">CodigoPostal : ' +"<h5 class='text-light'>"+ codigoPostalForm.value+"</h5>"+"</h3>";
-      document.getElementById ("mostrarDatos").innerHTML = textoForm
+
+
+      $("#formularioDatos").remove()
+      $("#datos").remove()
+      $("#mostrarDatos").append (`<div id="datosFormulario"></div>`)
+      $("#datosFormulario").append (`<h3 class="colorTextOrange" > Nombre : <b class='text-light '>${nombreForm.value}</b></h3><br>` )
+      $("#datosFormulario").append( `<h3 class="colorTextOrange">Telefono :  <b class='text-light'>${telefonoForm.value} </b></h3><br>`)
+      $("#datosFormulario").append (`<h3 class="colorTextOrange">Direccion :  <b class='text-light'>${direccionForm.value}</b></h3><br>`) 
+      $("#datosFormulario").append(`<h3 class="colorTextOrange">Distancia :  <b class='text-light'>${distanciaForm.value }</b></h3><br>`)
+      $("#datosFormulario").append(`<h3 class="colorTextOrange">CodigoPostal :<b class='text-light'> ${codigoPostalForm.value}</b></h3><br>`)
+      $("#datosFormulario").append(`<button class="btnComprar" id="ticketPrint"> Ticket </button>`)
     
+      $("#ticketPrint").click(printTicket)
+
+
+      localStorage.setItem("Nombre", nombreForm.value)
+      localStorage.setItem("Telefono", telefonoForm.value)
+      localStorage.setItem("Direccion", direccionForm.value)
+      localStorage.setItem("Distancia", distanciaForm.value)
+      localStorage.setItem("Codigo Postal", codigoPostalForm.value)
+
+  
     } 
+
+
+
+// funcion mostrar ticket 
+
+function printTicket (){
+
+
+  $("#ticketPrint").remove()
+  $("#datosFormulario").remove()
+
+
+
+  const carritoLS = localStorage.getItem("carrito")
+
+  const ticket = JSON.parse(carritoLS)
+
+  const totalLS = localStorage.getItem("Total")
+
+  const totalTicket = JSON.parse(totalLS)
+ 
+  $("#mostrarDatos").append(`<h3 class="colorTextOrange"> Ticket </h3><hr class="bg-warning p-1">`)
+
+  for (let i of ticket){
+
+    $("#mostrarDatos").append(`
+    <h5 class='text-warning'> ${i[0]}  </h5><h5 class='text-warning'> ${i[1]} </h5>
+
+    <h5 class='text-warning'> ${i[2]} </h5><h5 class='text-warning'>  ${i[3]} </h5><hr class="bg-warning p-1">`)
+
+  }
+
+$("#mostrarDatos").append(`<h3 class="colorTextOrange"> Total: $${totalTicket} </h3><hr class="bg-warning p-1">`)
+
+
+
+}
 
 // Evento para finalizar la compra llmando a la funcion
 const finComprar = document.getElementById("finCompra")
@@ -466,7 +512,7 @@ finComprar.addEventListener("click", refrescar )
 
   location.reload() 
 
-  
+
 
 }
 
